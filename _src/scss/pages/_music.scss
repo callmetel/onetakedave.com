@@ -1,0 +1,324 @@
+.music{
+	@include size(100%, auto);
+	padding: 0;
+  width: 100vw;
+  height: 100vh;
+  background: $black;
+
+	@include media($xs-sm-mobile){
+		height:100vh;
+		overflow: hidden;
+	}
+
+  .container {
+    width: 100%;
+    @include absolute(top 50% left 0);
+    transform: translateY(-50%);
+  }
+
+	h3 {
+      @include text(88px, 1.0, $font-weight-bold);
+      font-size: 6.4vw;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      transition: $trans-slow;
+      color: $white;
+      opacity: 1;
+      text-align: left;
+      transition: all ease 250ms;
+      display: block;
+      padding-left: 10.6vw;
+      margin-bottom: 40px;
+
+     @include media($md-mobile){
+     	padding-left: 5.3vw;
+     }
+     @include media($sm-mobile){
+     	font-size: 44px;
+     	margin-bottom: 20px;
+      text-align: center;
+     }
+      @include media($v-iphone-6-plus){
+        @include text(44px, 1.0, $font-weight-bold);
+      }
+
+    }
+
+    span{
+    	margin-top: 50px;
+    	display: block;
+    	color: $red;
+    	text-transform: uppercase;
+    	text-align: left;
+    	padding-left: 10.6vw;
+    	@include text(44px, 1.0, $font-weight-bold);
+    	font-size: 3.2vw;
+    	
+    	@include media($md-mobile){
+	     	padding-left: 5.3vw;
+	     }
+	     @include media($sm-mobile){
+	     	font-size: 22px;
+	     	margin-top: 30px;
+        text-align: center;
+	     }
+    	@include media($v-iphone-6-plus){
+	        @include text(22px, 1.0, $font-weight-bold);
+	    }
+    }
+    
+    .soundwave{
+      width: 57vw;
+    }
+
+    .divider{
+    	background: $red;
+    	height: 20px;
+    	width: 57vw;
+    	display: block;
+
+    	@include media($sm-mobile){
+    		width: 85vw;
+        margin: auto;
+    	}
+    }
+
+    ul.streaming-list{
+    	@include size(auto, auto);
+    	display: block;
+    	padding-top: 30px;
+    	padding-left: 10.6vw;
+
+    	@include media($md-mobile){
+	     	padding-left: 5.3vw;
+	     }
+	     @include media($sm-mobile){
+  			padding-left: 0;
+        margin: auto;
+        text-align: center;
+        align-items: center;
+  		}
+
+    	&:after{
+    		content:'';
+    		display: block;
+    		clear: both;
+    	}
+
+    	li.streaming-service{
+    		display: block;
+    		float: left;
+    		@include size(7.6vw, 2vw);
+    		vertical-align: middle;
+        opacity: 0.6;
+
+    		@include media($sm-mobile){
+    			@include size(70px, 20px);
+    			margin-bottom: 15px;
+          display: inline-block;
+          float: none;
+    		}
+
+    		a{
+    			display: block;
+    			@include size(100%, 100%);
+    			background-size: contain;
+    			background-repeat: no-repeat;
+    			background-position-x: left;
+    		}
+
+    		&.tidal{
+    			a{
+    				background-image: url('/_lib/img/sm-tidal.svg');
+    			}
+    		}
+    		&.applemusic{
+    			margin-right: 3vw;
+    			a{
+    				background-image: url('/_lib/img/sm-applemusic.svg');
+    			}
+    		}
+    		&.soundcloud{
+    			a{
+    				background-image: url('/_lib/img/sm-soundcloud.svg');
+    			}
+    		}
+    		&.spotify{
+    			a{
+    				background-image: url('/_lib/img/sm-spotify.svg');
+    			}
+    		}
+    	}
+    }
+    
+    .phone-container {
+      @include size(24vw, 50vw);
+      @include max(24vw, 50vw);
+      @include min(239px, 500px);
+      @include absolute(top 50% right 10vw);
+      transform: translateY(-50%);
+
+      @include media($sm-mobile) {
+        display: none;
+      }
+
+      .relative {
+        position: relative;
+        @include size(100%, 100%);
+
+        .phone{
+          @include size(24vw, 50vw);
+          @include min(239px, 500px);
+        } 
+
+        .np-slider-container {
+          @include size(86.7%, 74.21%);
+          @include absolute(top 11.54% right 6.21%);
+          border-radius: 3px;
+          overflow: hidden;
+
+          .np-slider{
+            position: relative;
+            @include size(100%, 100%);
+            
+            .time {
+              @include size(100%, auto);
+              @include absolute(top 0 right 0);
+              z-index: 100;
+            }
+
+            .nowplaying {
+              @include size(100%, 100%);
+              @include absolute(top 0 right 0);
+              z-index: 1;
+
+              &:hover{
+                opacity: 1!important;
+              }
+
+              &--current {
+                // opacity: 1!important;
+              }
+
+              img {
+                @include size(100%, 100%);
+              }
+
+            }  
+          }      
+        }
+      }
+    }
+    
+
+    .mobile-iphone{
+    	@include size(85vw, auto);
+    	max-width: 500px;
+    	margin: 0 auto;
+    	display: none;
+
+    	// @include media($sm-mobile){
+	   	// 	display: block!important;
+	   	// }
+    }
+}
+
+
+
+.nav-overlay {
+  position: relative;
+  z-index: 900;
+  @include size(100%, 100%);
+  background-color: rgba($white, 1);
+  display: none;
+  transform: translateX(100vw);
+  transition: transform 300ms ease-in-out 300ms;
+	
+  @include media($xs-sm-mobile){
+  	overflow-y: auto;
+  }
+
+  &--open {
+    display: block;
+    transform: translateX(0);
+  }
+
+  .close-overlay{
+    color: $white;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 8px;
+    letter-spacing: 2px;
+    transition: color 200ms 150ms ease-in-out;
+	  display: block;
+	  @include absolute(top 40px left 0px);
+  	border:0;
+  	cursor: pointer;
+  	z-index: 999999;
+    background: transparent;
+
+    .line {
+      display: inline-block;
+      height: 1px;
+      width: 60px;
+      background: #FFFFFF;
+      margin-right: 15px;
+      vertical-align: middle;
+      transform: translateX(0px);
+      transition: transform 250ms ease-in-out;
+    }
+  }
+
+  > div {
+    @include absolute(top 50% left 50%);
+    transform: translate(70%, -50%);
+    text-align: center;
+    display: none;
+    transition: transform 500ms ease-in-out 100ms;
+
+    &.open {
+      transform: translate(-50%, -50%)!important;
+      display: block!important;
+    }
+
+    @include media($sm-mobile){
+    	height: 100%;
+    }
+
+    h3 {
+    }
+
+    p {
+      margin-bottom: 15px;
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+
+    a {
+      display: block;
+
+      &:hover {
+        opacity: .65;
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

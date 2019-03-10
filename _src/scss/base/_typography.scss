@@ -1,0 +1,84 @@
+
+//==================== WEBFONTS: ==================
+//==================================================
+
+@font-face {
+    font-family: 'Gotham';
+    src: url('#{$path-font}/hinted-GothamLight.woff2') format('woff2'),
+        url('#{$path-font}/hinted-GothamLight.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gotham';
+    src: url('#{$path-font}/hinted-GothamMedium.woff2') format('woff2'),
+        url('#{$path-font}/hinted-GothamMedium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gotham';
+    src: url('#{$path-font}/hinted-GothamBold.woff2') format('woff2'),
+        url('#{$path-font}/hinted-GothamBold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+
+// #Global
+h1 {
+  @include text(26px, 1.0, $font-weight-light);
+}
+
+h2 {
+  width: auto;
+  height: auto;
+  padding: 5px 20px;
+  margin-bottom: 15px;
+  display: block;
+  cursor: default;
+  font-size: 1.25rem;
+  font-weight: $font-weight-bold;
+  color: $white;
+  text-transform: uppercase;
+  @include media($lg-mobile){
+    font-size: 1.25rem;  
+  }
+  @include media($sm-mobile){
+    font-size: 1.25rem; 
+  }
+  @include media($v-iphone-6-plus){
+    font-size: 1em;  
+  }
+}
+
+h3 > span:first-of-type {
+  width: auto;
+  height: auto;
+  padding: 5px 20px;
+  margin-bottom: 15px;
+  display: block;
+  cursor: default;
+  font-size: 1.5em;
+  font-weight: $font-weight-bold;
+  color: $white;
+  text-transform: uppercase;
+  background: $red;
+  @include media($sm-mobile){
+    font-size: 1em;  
+  }
+}
+
+h4 {
+
+}
+
+h5 {
+
+}
+
+h6 {
+
+}

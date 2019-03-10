@@ -1,0 +1,115 @@
+
+// #Base-Styles
+
+* {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  &::after {
+    box-sizing: inherit;
+  }
+  &::before {
+    box-sizing: inherit;
+  }
+  &:before {
+    box-sizing: border-box;
+  }
+  &:after {
+    box-sizing: border-box;
+  }
+  &:focus {
+    outline: 0 !important;
+  }
+}
+
+input::-moz-focus-inner,
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+::selection,
+::-moz-selection {
+  color: $white;
+  background-color: $black;
+}
+
+html,
+body {
+  @include size(100%, 100%);
+}
+
+body {
+  font-family: $gotham;
+  @include text(18px, 1.5, $font-weight-light, $black);
+  text-align: left;
+  background-color: $white;
+  overflow: hidden;
+  
+}
+
+.desktop {
+  &.loaded:before {
+    transform: translateX(110vw)!important;
+  }
+  
+  &:before {
+    content: '';
+    display: block;
+    position: fixed;
+    z-index: 9999;
+    background-color: $white;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    transition: transform 500ms ease-in-out;
+    transform: translateX(0vw);
+  }
+}
+
+a {
+  color: $white;
+  transition: all 300ms $trans-cubic;
+  text-decoration: none;
+}
+
+a:visited {
+  @extend a;
+}
+
+a:hover {
+  transition: all 350ms $trans-cubic;
+}
+
+a:active {
+  @extend a;
+}
+
+%a {
+  background-color: $trans;
+  color: $white;
+  //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+  transition: all $trans-slow $trans-cubic;
+  text-decoration: none;
+}
+
+.screen-reader {
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px,1px,1px,1px);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  a {
+    &:focus {
+      position: relative;
+      clip: auto;
+      width: auto;
+      height: auto;
+      overflow: auto;
+    }
+  }
+}
