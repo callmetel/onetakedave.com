@@ -162,6 +162,7 @@ header {
       display: flex;
       background: $red;
       z-index: 0;
+      width: 100vw;
 
       .menu-img {
 
@@ -189,7 +190,10 @@ header {
         &--fg {
           z-index: 2;
           opacity: .7;
-          animation: 200ms glitch cubic-bezier(0.72, 0.31, 0.65, 0.28) 250ms infinite forwards;
+          animation-iteration-count: infinite;
+          animation-duration: 1s;
+          animation-delay: 5s;
+          animation-timing-function: ease-in-out;
         }
 
         &--mg {
