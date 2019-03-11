@@ -1455,26 +1455,26 @@ header {
 .main-menu ul {
   list-style-type: none;
   display: block;
-  opacity: 1;
+  opacity: 0;
   visibility: hidden;
-  transform: translate(-250%, 250%);
-  transition: transform 500ms cubic-bezier(0.72, 0.31, 0.65, 0.68);
+  transform: scale(0.7);
+  transition: opacity 300ms ease, transform 400ms 200ms cubic-bezier(0.72, 0.31, 0.65, 0.68);
   top: 0;
   left: 0;
   position: fixed;
-  background: #ff3600;
   width: 100vw;
   height: 100vh;
+  background: #ff3600;
   z-index: -1;
 }
 .main-menu ul:after {
   content: "";
-  position: absolute;
   top: 50%;
   left: 50%;
-  width: 200vw;
-  height: 200vw;
-  transform: translate(-50%, -50%) rotate(-45deg);
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  transform: translate(-50%, -50%);
   transform-origin: center;
   background: #ff3600;
   z-index: -1;
@@ -1488,7 +1488,7 @@ header {
 .main-menu ul.menu-open {
   opacity: 1;
   visibility: visible;
-  transform: translateX(0px);
+  transform: scale(1);
   font-size: 0;
 }
 .main-menu ul.menu-open .absolute-container {
@@ -1509,18 +1509,16 @@ header {
   0% {
     opacity: 1;
     visibility: visible;
-    transform: translateX(0px);
+    transform: scale(1);
   }
   100% {
+    transform: scale(0.7);
     visibility: hidden;
-    transform: translate(-250%, 250%);
+    opacity: 0;
   }
 }
 .main-menu ul.menu-close {
-  animation: 500ms closemenu ease-in-out 250ms;
-}
-.main-menu ul.menu-close .absolute-container {
-  animation: 250ms closeitems ease-in-out;
+  transition: visibility 100ms 800ms, opacity 300ms 400ms ease, transform 400ms cubic-bezier(0.72, 0.31, 0.65, 0.68) !important;
 }
 .main-menu ul div.absolute-container {
   top: 50%;
@@ -1529,6 +1527,7 @@ header {
   transform: translate(-40%, -40%);
   opacity: 0;
   transition: opacity 200ms 510ms ease-in-out, transform 250ms 500ms ease-in-out;
+  z-index: 1;
 }
 .main-menu ul div.absolute-container li {
   display: block;
@@ -1596,6 +1595,53 @@ header {
   transform: translateX(-50%);
   opacity: 0;
   transition: transform 300ms ease-in-out, opacity 100ms ease-in-out;
+}
+.main-menu ul div.menu-bg {
+  bottom: 0;
+  left: 50%;
+  position: fixed;
+  transform: translateX(-50%);
+  display: flex;
+  background: #ff3600;
+  z-index: 0;
+}
+.main-menu ul div.menu-bg .menu-img {
+  width: auto;
+  height: 100vh;
+  mix-blend-mode: luminosity;
+}
+@keyframes glitch {
+  0% {
+    transform: translate(-50%, 0) !important;
+  }
+  50% {
+    transform: translate(-30%, -10%) !important;
+  }
+  100% {
+    transform: translate(-70%, 0) !important;
+  }
+}
+.main-menu ul div.menu-bg .menu-img:not(.menu-img--bg) {
+  bottom: 0;
+  left: 50%;
+  position: absolute;
+  transform: translateX(-50%);
+}
+.main-menu ul div.menu-bg .menu-img--fg {
+  z-index: 2;
+  opacity: 0.7;
+  animation: 200ms glitch cubic-bezier(0.72, 0.31, 0.65, 0.28) 250ms infinite forwards;
+}
+.main-menu ul div.menu-bg .menu-img--mg {
+  z-index: 1;
+  opacity: 0.8;
+  animation: 200ms glitch cubic-bezier(0.72, 0.31, 0.65, 0.68) 0ms infinite forwards;
+}
+.main-menu ul div.menu-bg .menu-img--bg {
+  margin-top: auto;
+  margin-bottom: 0;
+  opacity: 0.8;
+  animation: 200ms glitch cubic-bezier(0.72, 0.31, 0.65, 0.68) 100ms infinite forwards;
 }
 
 footer {
