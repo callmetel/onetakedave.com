@@ -189,24 +189,21 @@ header {
 
         &--fg {
           z-index: 2;
-          opacity: .7;
-          animation-iteration-count: infinite;
-          animation-duration: 1s;
-          animation-delay: 5s;
-          animation-timing-function: ease-in-out;
+          opacity: .3;
+          animation-duration: 3s;
         }
 
         &--mg {
           z-index: 1;
-          opacity: .8;
-          animation: 200ms glitch cubic-bezier(0.72, 0.31, 0.65, 0.68) 0ms infinite forwards;
+          opacity: .2;
         }
 
         &--bg {
-          margin-top: auto;
+          margin: auto auto 0 auto;
+          display: block;
           margin-bottom: 0;
-          opacity: .8;
-          animation: 200ms glitch cubic-bezier(0.72, 0.31, 0.65, 0.68) 100ms infinite forwards;
+          opacity: .3;
+          animation-duration: 2.5s;
         }
         
       }
