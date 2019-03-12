@@ -245,28 +245,23 @@
 }
 
 @keyframes shake {
-  from,
-  to {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+  0% {
+     -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
+  33% {
+     -webkit-transform: translateX(-50.5%);
+    transform: translateX(-50.5%);
+  }
+  67% {
+    -webkit-transform: translateX(-49.5%);
+    transform: translateX(-49.5%);
+  }
+  100% {
+     -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
   }
 
-  10%,
-  30%,
-  50%,
-  70%,
-  90% {
-    -webkit-transform: translate3d(-10px, 0, 0);
-    transform: translate3d(-10px, 0, 0);
-  }
-
-  20%,
-  40%,
-  60%,
-  80% {
-    -webkit-transform: translate3d(10px, 0, 0);
-    transform: translate3d(10px, 0, 0);
-  }
 }
 
 .shake {
