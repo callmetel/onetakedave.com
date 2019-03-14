@@ -39,17 +39,20 @@ let $currPlaying   = $('.video--playing'),
     storyTL = new TimelineMax({
         paused: true
     });
+
 let isMobile = {
     detectMobile: function() {
         return navigator.userAgent.match(/Mobi/i);
     }
 };
+
 $('[tabindex="0"]').on('keydown', function(e) {
     let $this = $(this);
     if (e.keyCode === 13) {
         $this.trigger('click');
     }
 });
+
 $muteBtn.on('click touchend', function() {
     let $this = $(this);
     if ($('.video--scene').prop('muted')) {
@@ -64,6 +67,7 @@ $muteBtn.on('click touchend', function() {
         }, 150);
     }
 });
+
 const sections = {
     home: {
         title: 'Home',
@@ -404,6 +408,7 @@ function nextVideo() {
     playVideo(sectionClass);
     history.pushState(pageData, pageTitle, pageUrl);
 }
+
 let videoProgress = setInterval(function() {
     let currTime = parseInt($currPlaying[0].currentTime, 10),
         duration = parseInt($currPlaying[0].duration, 10),
@@ -451,22 +456,17 @@ let videoProgress = setInterval(function() {
         learnMore('open');
     }
 }, 850);
+
 let OneTakeDave = {
     init: function() {
         let pageTitle = document.title,
             pageUrl = window.location.pathname,
             pageData;
             console.log(window.location.pathname);
-        // if(window.location.pathname != '/who' && window.location.pathname != '/what' && window.location.pathname != '/where' && window.location.pathname != '/when' && window.location.pathname != '/why' && window.location.pathname != '/how' ) {
-                pageData = 'home';
-                $('.home').addClass('section--active');
-                $('.home > .video-wrapper').removeClass('fs');
-        // }
-        // else {
-        // //     pageData = pageUrl.replace('/','');
-        // //     $('.'+pageData).addClass('section--active');
-        // //     $('.'+pageData+ '> .video-wrapper').removeClass('fs');
-        // }
+            pageData = 'home';
+            $('.home').addClass('section--active');
+            $('.home > .video-wrapper').removeClass('fs');
+
         history.replaceState(pageData, pageTitle, pageUrl);
         $header.css('opacity', 1);
         $navBtn.add($homeBtn).on('click', function(e) {
@@ -723,11 +723,14 @@ let OneTakeDave = {
         });
     }
 };
+
 $(function() {
     OneTakeDave.init();
 });
+
 $body.removeClass('mobile-active');
 $desktop.fadeIn(1000);
+
 window.addEventListener('load', function() {
     if (isMobile.detectMobile()) {
         let video1 = document.querySelector('#video-who'),
@@ -843,6 +846,7 @@ window.addEventListener('load', function() {
         },200);
     }
 }, false);
+
 window.addEventListener('popstate', function(e) {
     playVideo(e.state);
     learnMore('close');
@@ -889,6 +893,7 @@ window.addEventListener('popstate', function(e) {
         paused: true
     });
 });
+
 $('.video-blurb').on('click', function(e){
   var $link = $(this).find('p');
   $('#iframe-lightbox').addClass('yt-video-playing');
