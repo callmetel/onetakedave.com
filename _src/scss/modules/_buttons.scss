@@ -14,7 +14,7 @@
   
   // Hamburger Menu Closed
   &--menu {
-    @include size(31px, 31px);
+    @include size(52px, 31px);
     padding: 5px;
     display: block;
     @include absolute(right 0);

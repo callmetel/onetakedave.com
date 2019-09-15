@@ -27,7 +27,7 @@ header {
     transform: scale(.7);
     @include fixed(top 0 left 0);
     @include size(100vw, 100vh);
-    background: $red;
+    background: $black;
     z-index: -1;
     transition: opacity 300ms ease, transform 400ms 200ms cubic-bezier(0.72, 0.31, 0.65, 0.68);
 
@@ -37,7 +37,7 @@ header {
       @include size(100vw, 100vh);
       transform: translate(-50%, -50%);
       transform-origin: center;
-      background: $red;
+      background: $black;
       z-index: -1;
       @include media($v-iphone-6-plus) {
         width: 300vw;
@@ -82,7 +82,7 @@ header {
 
             &:hover {
               width: 100vw!important;
-              z-index: 1000!important;
+              // z-index: 1000!important;
             }
 
             span {
@@ -166,32 +166,36 @@ header {
         width: 25%;
         height: 100vh;
         @include absolute(top 0);
+        transition: all 1s .4s ease-in-out;
         
         &-music {
           left: 0;
 
-          .menu-item-hover {
-            width: 100%;
-            height: 100%;
-            background: rgba(255,54,0,0.7);
+          &:hover {
+            .menu-item-title {
+              margin-left: 5%;
+            }
           }
         }
 
         &-videos {
           left: 25%;
+          z-index: 100;
         }
 
         &-events {
           left: 50%;
+          z-index: 200;
         }
 
         &-shop {
           left: 75%;
+          z-index: 200;
         }
 
         &:hover {
-          span {
-            color: $red;
+          .menu-item-title {
+            margin-left: 5%;
           }
         }
 
@@ -199,8 +203,17 @@ header {
           border: none;
         }
 
-        &.menu-active span {
+        &.menu-active .menu-item-title {
           opacity: 1;
+        }
+
+        &.menu-item-not-active {
+
+          .menu-item-title {
+            filter: blur(12px)!important;
+            transform: translateY(80%)!important;
+            opacity: .02!important;
+          }
         }
 
         @include media($sm-mobile){
@@ -209,7 +222,7 @@ header {
           width: auto;
         }
 
-        span {
+        .menu-item-title {
           @include text(45px, 1.0, $font-weight-light);
           text-transform: uppercase;
           letter-spacing: .24em;
@@ -218,69 +231,52 @@ header {
           color: $white;
           position: relative;
           display: table;
-          margin: auto;
+          margin: auto auto auto 10%;
           filter: blur(8px);
           transform: translateY(70%);
+          z-index: 10;
 
           @include media($md-mobile){
             @include text(30px, 1.0, $font-weight-light);
           }
         }
-      }  
+      }
+
+      .menu-item-hover {
+        width: 0;
+        height: 100%;
+        background-image: url('https://onthedaily.s3.amazonaws.com/otd-menu-hover-bg.png');
+        background-size: cover;
+        background-position: center right;
+        @include fixed(top 0 left 0);
+        opacity: .75;
+        z-index: 0;
+        transition: all 1s ease-in-out;
+      } 
+
+      .menu-item-hover.active {
+        width: 100vw!important;
+        transition-delay: none!important;
+      } 
     }
 
     div.menu-bg {
       @include fixed(bottom 0 left 50%);
       transform: translateX(-50%);
       display: flex;
-      background: $red;
+      background: $black;
       z-index: 0;
       width: 100vw;
+      height: 100%;
 
       .menu-img {
 
         @include size(auto, 100vh);
-        mix-blend-mode: luminosity;
-
-
-        @keyframes glitch {
-          0% {
-            transform: translate(-50%,0)!important;
-          }
-          50% {
-            transform: translate(-30%,-10%)!important;
-          }
-          100% {
-            transform: translate(-70%,0)!important;
-          }
-        }
+        opacity: 0.2;
 
         &:not(.menu-img--bg) {
           @include absolute(bottom 0 left 50%);
           transform: translateX(-50%);
-        }
-
-        &--fg {
-          z-index: 2;
-          opacity: .3;
-          animation-duration: 3s;
-        }
-
-        &--mg {
-          z-index: 1;
-          opacity: .8;
-          animation-duration: 5s;
-          animation-iteration-count: infinite;
-          animation-timing-function: $trans-slow;
-          animation-fill-mode: forwards;
-        }
-
-        &--bg {
-          margin: auto auto 0 auto;
-          display: block;
-          margin-bottom: 0;
-          opacity: .3;
-          animation-duration: 2.5s;
         }
         
       }
