@@ -553,7 +553,9 @@ let OneTakeDave = {
                 $currPlaying[0].pause();
                 progressBar('pause');
             } else if ($menu.hasClass('menu-close') && !$currPlaying.hasClass('video--loop')) {
-                s
+                $('.menu-item-title-wrap,.menu-item-title,.menu-item-hover-container,.menu-item-hover-bg').removeAttr('style');
+                $('..menu-item-title').removeClass('current-menu-item');
+                $('.menu-item-title-wrap').removeClass('menu-item-not-active');
                 progressBar('resume');
             };
         });
