@@ -33,17 +33,83 @@ $(document).ready(function() {
         $('.bit-button').text('Tickets');
     }, 500);
 
-    $('.main-menu .menu-item').hover(function() {
-    	var $this = $(this);
-    	$this.removeClass('menu-item-not-active');
-    	$this.siblings('.menu-item').addClass('menu-item-not-active');
-    	setTimeout(function(){
-    		$this.siblings('.menu-item-hover').addClass('active');	
-    	},650)
-    	
-    }, function() {
-    	var $this = $(this);
-    	$this.siblings('.menu-item').removeClass('menu-item-not-active');
-    	$this.siblings('.menu-item-hover').removeClass('active');
-    });
+    if(!isMobile.detectMobile()){
+	    $(document).on('mouseenter','.menu-open .menu-item-title-container .menu-item-title-wrap', function (e) {
+	    	var item = $(this).attr('class').replace('menu-item-title-wrap menu-item-title-wrap-','');
+	    	switch (item) {
+	    		case 'music':
+	    			showMusicMenu();
+	    			break;
+	    		default:
+	    			// statements_def
+	    			break;
+	    	}
+	    }).on('mouseleave','.menu-open .menu-item-title-container .menu-item-title-wrap',  function(){
+	    	var item = $(this).attr('class').replace('menu-item-title-wrap menu-item-title-wrap-','');
+	    	switch (item) {
+	    		case 'music':
+	    			hideMusicMenu();
+	    			break;
+	    		default:
+	    			// statements_def
+	    			break;
+	    	}
+	    });
+
+	    $('.btn--close').bind('mouseenter', function(e) {
+	    	$('.menu-open .menu-item-title-container .menu-item-title-wrap').removeClass('active');
+	    });
+
+	    function showMusicMenu() {
+	    	var musicMenuTL = new TimelineMax({paused: true});
+			musicMenuTL.set('.menu-item-title-wrap:not(.menu-item-title-wrap-music)', {
+				className:'+=menu-item-not-active'
+			}).set('.menu-item-title-wrap-music .menu-item-title', {
+				alpha: 0,
+				y: 0,
+				className:'+=current-menu-item'
+			}).set('.menu-item-music .menu-item-title', {
+				alpha: 1,
+				y: 0
+			}, '-=2').fromTo('.menu-item-container .menu-item-hover-bg', 1, {
+				width: '20%'
+			}, {
+				width: '100%'
+			}, '-=2.5').fromTo('.menu-item-music .menu-item-hover-container', 1.5, {
+				alpha: 0,
+				y: 40
+			}, {
+				alpha: 1,
+				y: 0
+			});
+			musicMenuTL.play();
+	    }
+
+	    function hideMusicMenu() {
+	    	var musicMenuTL = new TimelineMax({paused: true});
+			musicMenuTL.set('.menu-item-title-wrap:not(.menu-item-title-wrap-music)', {
+				className:'-=menu-item-not-active'
+			}).fromTo('.menu-item-music .menu-item-hover-container', 1, {
+				alpha: 1,
+				y: 0
+			}, {
+				alpha: 0,
+				y: 40
+			}).fromTo('.menu-item-container .menu-item-hover-bg', 1, {
+				width: '100%'
+			}, {
+				width: 0
+			},'-=1.5').set('.menu-item-title-wrap-music .menu-item-title', {
+				alpha: 1,
+				filter: 'blur(0px)',
+				x: 0
+			},'-=.5').set('.menu-item-music .menu-item-title', {
+				alpha: 0
+			},'-=.5');
+			musicMenuTL.play();
+	    }	
+    }
+
+    
+
 });

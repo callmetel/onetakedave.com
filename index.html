@@ -43,9 +43,31 @@
 					<div class='bar bar--bottom'></div>
 				</a>
 				<ul class='parent-container menu-close'>
+					<div class='absolute-container menu-item-title-container'>
+						<div tabindex='0' class='menu-item-title-wrap menu-item-title-wrap-music'>
+							<span class="menu-item-title" data-url='music'>Music</span>
+						</div>
+						<div tabindex='0' class='menu-item-title-wrap menu-item-title-wrap-videos'>
+							<span class="menu-item-title" data-url='videos'>Videos</span>
+						</div>
+						<div tabindex='0' class='menu-item-title-wrap menu-item-title-wrap-events'>
+							<span class="menu-item-title" data-url='events'>Events</span>
+						</div>
+						<div tabindex='0' class='menu-item-title-wrap menu-item-title-wrap-shop'>
+							<span class="menu-item-title" data-url='shop'>Shop</span>
+						</div>
+					</div>
+
 					<div class='absolute-container menu-item-container'>
 						<li tabindex='0' class='menu-item menu-item-music'>
 							<span class="menu-item-title" data-url='music'>Music</span>
+							<div class="menu-item-hover-container">
+								<img src="https://onthedaily.s3.amazonaws.com/OneTakeDave-The-Friday-Tape-Alt-Cover.jpg" alt="" class="cover-art cover-art--friday-tape">
+								<img src="https://onthedaily.s3.amazonaws.com/stillwonderful-coverart-2-012.jpg" alt="" class="cover-art cover-art--still-wonderful">
+								<img src="https://onthedaily.s3.amazonaws.com/shangri-la-front-cover-web.jpg" alt="" class="cover-art cover-art--shangri-la">
+								<img src="https://onthedaily.s3.amazonaws.com/OneTakeDave-Free.99-Cover.jpg" alt="" class="cover-art cover-art--free99">
+								<img src="https://onthedaily.s3.amazonaws.com/4K-1.JPG" alt="" class="cover-art cover-art--4k">
+							</div>
 						</li>
 						<li tabindex='0' class='menu-item menu-item-videos'>
 							<span class="menu-item-title" data-url='videos'>Videos</span>
@@ -56,7 +78,7 @@
 						<li tabindex='0' class='menu-item menu-item-shop'>
 							<span class="menu-item-title" data-url='shop'>Shop</span>
 						</li>
-						<span class="menu-item-hover"></span>
+						<span class="menu-item-hover-bg"></span>
 					</div>
 
 					<div class="menu-bg">
@@ -559,7 +581,7 @@
 			<iframe id='ytVids' name='ytVids' src='about:blank' allowfullscreen>Your browser doesn't support iframe.</iframe>
 		</div>
 	</main>
-	<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js'></script>
+	<script src='https://onthedaily.s3.amazonaws.com/TweenMax.min.js'></script>
 	<script src='/_lib/js/script.js'></script>
 	<script src='/_lib/js/app.js'></script>
 </body>
