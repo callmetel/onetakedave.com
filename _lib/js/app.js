@@ -543,11 +543,22 @@ let OneTakeDave = {
         });
         $menuBtn.on('click', function() {
             let $this = $(this);
-            $this.toggleClass('btn--close');
-            $menu.toggleClass('menu-close');
+
+            if($menu.hasClass('menu-open')) {
+                $menu.removeClass('show-menu-items');    
+            };
+            setTimeout(function() {
+                $this.toggleClass('btn--close');
+                $menu.toggleClass('menu-close');
+            }, 100);
             setTimeout(function() {
                 $menu.toggleClass('menu-open');
             }, 300);
+            setTimeout(function() {
+                if($menu.hasClass('menu-open')) {
+                    $menu.addClass('show-menu-items');    
+                };
+            }, 950);
             $menuItems.removeClass('menu-active');
             if ($menu.hasClass('menu-open') && !$currPlaying.hasClass('video--loop')) {
                 $currPlaying[0].pause();

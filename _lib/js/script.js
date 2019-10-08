@@ -34,82 +34,103 @@ $(document).ready(function() {
     }, 500);
 
     if(!isMobile.detectMobile()){
-	    $(document).on('mouseenter','.menu-open .menu-item-title-container .menu-item-title-wrap', function (e) {
-	    	var item = $(this).attr('class').replace('menu-item-title-wrap menu-item-title-wrap-','');
-	    	switch (item) {
-	    		case 'music':
-	    			showMusicMenu();
-	    			break;
-	    		default:
-	    			// statements_def
-	    			break;
-	    	}
-	    }).on('mouseleave','.menu-open .menu-item-title-container .menu-item-title-wrap',  function(){
-	    	var item = $(this).attr('class').replace('menu-item-title-wrap menu-item-title-wrap-','');
-	    	switch (item) {
-	    		case 'music':
-	    			hideMusicMenu();
-	    			break;
-	    		default:
-	    			// statements_def
-	    			break;
-	    	}
-	    });
+
+    	var musicShowMenuTL = new TimelineMax({paused: true}),
+    		musicHideMenuTL = new TimelineMax({paused: true}),
+    		videoShowMenuTL = new TimelineMax({paused: true}),
+    		videoHideMenuTL = new TimelineMax({paused: true}),
+    		menuplaying = 0;
+
+    	$(document).delegate('.btn--menu', 'click', function(e){
+    		$('.main-menu .menu-item-hover-container img').each(function(){
+    			var $imgsrc = $(this).attr('data-src');
+    			$(this).attr('src', $imgsrc);
+    		});
+    	});
+
+    	$(document).on('mouseenter','.menu-open .menu-item-title-container .menu-item-title-wrap', function(e) {
+    		
+    		var item = $(this).attr('class').replace('menu-item-title-wrap menu-item-title-wrap-','');
+    		var $titleclass = 'absolute-container menu-item-title-container ';
+    		var $itemclass = 'absolute-container menu-item-container ';
+
+    		switch (item) {
+    			case 'music':                                                                                                        
+    				console.log('music');
+    				$('.show-menu-items .menu-item-title-container').attr('class','absolute-container menu-item-title-container');
+    				$('.show-menu-items .menu-item-title-container').addClass('music-menu-active');
+    				$('.show-menu-items .menu-item-container').attr('class','absolute-container menu-item-container');
+    				$('.show-menu-items .menu-item-container').addClass('music-menu-active');
+    				break;
+    			case 'videos':
+    				console.log('videos');
+    				$('.show-menu-items .menu-item-title-container').attr('class','absolute-container menu-item-title-container');
+    				$('.show-menu-items .menu-item-title-container').addClass('videos-menu-active');
+    				$('.show-menu-items .menu-item-container').attr('class','absolute-container menu-item-container');
+    				$('.show-menu-items .menu-item-container').addClass('videos-menu-active');
+    				break;
+    			case 'tour':
+    				console.log('tour');
+    				$('.show-menu-items .menu-item-title-container').attr('class','absolute-container menu-item-title-container');
+    				$('.show-menu-items .menu-item-title-container').addClass('tour-menu-active');
+    				$('.show-menu-items .menu-item-container').attr('class','absolute-container menu-item-container');
+    				$('.show-menu-items .menu-item-container').addClass('tour-menu-active');
+    				break;
+    			case 'merch':
+    				console.log('merch');
+    				$('.show-menu-items .menu-item-title-container').attr('class','absolute-container menu-item-title-container');
+    				$('.show-menu-items .menu-item-title-container').addClass('merch-menu-active');
+    				$('.show-menu-items .menu-item-container').attr('class','absolute-container menu-item-container');
+    				$('.show-menu-items .menu-item-container').addClass('merch-menu-active');
+    				break;
+    			// default:
+    			// 	$('.show-menu-items .menu-item-title-container').attr('class','absolute-container menu-item-title-container');
+    			// 	$('.show-menu-items .menu-item-container').attr('class','absolute-container menu-item-container');
+    			// break;
+    		}
+    	});
 
 	    $('.btn--close').bind('mouseenter', function(e) {
 	    	$('.menu-open .menu-item-title-container .menu-item-title-wrap').removeClass('active');
 	    });
 
-	    function showMusicMenu() {
-	    	var musicMenuTL = new TimelineMax({paused: true});
-			musicMenuTL.set('.menu-item-title-wrap:not(.menu-item-title-wrap-music)', {
-				className:'+=menu-item-not-active'
-			}).set('.menu-item-title-wrap-music .menu-item-title', {
-				alpha: 0,
+    };
+
+	// tourDatesLoop();
+
+	var dates = $('.tour-date');
+
+var tl = new TimelineLite({
+			onComplete: function(){
+				tl.restart();
+			}
+		});
+
+ 
+TweenLite.defaultEase = Circ.easeInOut;
+
+var time = 2;
+var y = 320;
+
+tl
+	.add ( TweenMax.staggerFromTo (
+		dates, time,
+			{
+				opacity: 0,
+				y:y,
+			},
+			{	
+				opacity: 1,
 				y: 0,
-				className:'+=current-menu-item'
-			}).set('.menu-item-music .menu-item-title', {
-				alpha: 1,
-				y: 0
-			}, '-=2').fromTo('.menu-item-container .menu-item-hover-bg', 1, {
-				width: '20%'
-			}, {
-				width: '100%'
-			}, '-=2.5').fromTo('.menu-item-music .menu-item-hover-container', 1.5, {
-				alpha: 0,
-				y: 40
-			}, {
-				alpha: 1,
-				y: 0
-			});
-			musicMenuTL.play();
-	    }
-
-	    function hideMusicMenu() {
-	    	var musicMenuTL = new TimelineMax({paused: true});
-			musicMenuTL.set('.menu-item-title-wrap:not(.menu-item-title-wrap-music)', {
-				className:'-=menu-item-not-active'
-			}).fromTo('.menu-item-music .menu-item-hover-container', 1, {
-				alpha: 1,
-				y: 0
-			}, {
-				alpha: 0,
-				y: 40
-			}).fromTo('.menu-item-container .menu-item-hover-bg', 1, {
-				width: '100%'
-			}, {
-				width: 0
-			},'-=1.5').set('.menu-item-title-wrap-music .menu-item-title', {
-				alpha: 1,
-				filter: 'blur(0px)',
-				x: 0
-			},'-=.5').set('.menu-item-music .menu-item-title', {
-				alpha: 0
-			},'-=.5');
-			musicMenuTL.play();
-	    }	
-    }
-
-    
+			},
+		3.1 ))
+	.add ( TweenMax.staggerTo (
+		dates, time,
+			{
+				delay: .9,
+				opacity: 0,
+				y: -y,
+			},
+		3.1 ), 2.4);
 
 });
