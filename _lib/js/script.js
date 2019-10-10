@@ -1,4 +1,11 @@
 $(document).ready(function() {
+
+	var isMobile = {
+	    detectMobile: function() {
+	        return navigator.userAgent.match(/Mobi/i);
+	    }
+	};
+
     init();
 
     function init() {
