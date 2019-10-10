@@ -11,12 +11,13 @@ header {
   transition: all 2s ease-in-out;
 }
 
-.stop-hover {
+.block-hover {
   @include fixed(top 0 left 0);
   @include size(100vw, 100vh);
-  transform: translate(-1000%);
+  display: block;
+  z-index: -1;
+
   &.active {
-    transform: translate(0);
     z-index: 9999999;
   }
 }
@@ -232,25 +233,16 @@ header {
                     text-transform: uppercase;
                   }
 
-                  .tickets {
-                    display: flex;
-                    align-items: center;
+                  .time {
                     margin-top: 14px;
-
-                    a {
-                      background: transparent;
-                      border: 3px solid #fff;
-                      padding: 5px 35px;
-                      color: #fff;
-                      text-transform: uppercase;
-                      display: block;
-                      font-size: 16px;
-                      font-weight: 500;
-
-                      &:not(:last-of-type) {
-                        margin-right: 10px;
-                      }
-                    }
+                    background: transparent;
+                    border: 3px solid #fff;
+                    padding: 5px 35px;
+                    color: #fff;
+                    text-transform: uppercase;
+                    display: table;
+                    font-size: 16px;
+                    font-weight: 500;
                   }
                 }
 
@@ -275,6 +267,67 @@ header {
 
         &-merch {
           z-index: 200;
+
+          .menu-item-hover-container {
+            @include size(75%, 100vh);
+            @include absolute(top 0 left 0);
+            display: flex;
+            align-items: center;
+            transform: translateX(-40px);
+            transition: opacity .4s .7s ease-in, transform .4s .9s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+
+            .featured-products {
+              display: flex;
+              align-items: center;
+              overflow: hidden;
+              @include size(100vw, auto);
+
+              .product {
+                display: flex;
+                align-items: center;
+                @include size(auto, 100%);
+                @include absolute(top 0 left 50%);
+                transform: translateX(1000%);
+                // opacity: 0;
+                max-width: 600px;
+                // border: 1px solid #ddd;
+
+                .product-image {
+                  display: inline-block;
+                  margin-right: 30px;
+                  width: 60%;
+
+                  img {
+                    width: 100%;
+                  }
+                }
+
+                .product-info {
+                  width: 40%;
+
+                  .product-name {
+                    font-size: 18px;
+                    text-transform: uppercase;
+                    color: #fff;
+                    font-weight: bold;
+                    letter-spacing: .24em;
+                    display: block;
+                    opacity: 0;
+                  }
+
+                  .product-price {
+                    font-size: 16px;
+                    text-transform: uppercase;
+                    color: rgba(255,255,255,0.7);
+                    font-weight: 300;
+                    letter-spacing: .24em;
+                    display: block;
+                    opacity: 0;
+                  }
+                }
+              }
+            }
+          }
         }
 
         &:last-of-type {
@@ -325,7 +378,7 @@ header {
         background-size: cover;
         background-position: center right;
         @include fixed(top 0 left 0);
-        opacity: .75;
+        opacity: .5;
         z-index: 0;
         transition: width 0.6s cubic-bezier(0.47, 0, 0.745, 0.715);
       } 
@@ -416,7 +469,6 @@ header {
               transform: translateY(0);
               opacity: 1;
               cursor: pointer;
-              transition: opacity .4s cubic-bezier(0.785, 0.135, 0.15, 0.86)!important;
 
               &:after {
                 content: '';
@@ -425,7 +477,7 @@ header {
                 height: 2px;
                 background: #fff;
                 margin-top: 10px;
-                transition: width .3s .4s ease-in-out;
+                transition: width .6s 1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
               }
 
               &.current-menu-item{ 
@@ -437,7 +489,6 @@ header {
           }
 
           &.music-menu-active {
-
             span.menu-item-title {
               &[data-url="music"] {
                 font-weight: bold!important; 
@@ -453,13 +504,12 @@ header {
                 filter: blur(12px)!important;
                 transform: translateY(80%)!important;
                 opacity: .02!important;
+                transition: opacity .4s cubic-bezier(0.785, 0.135, 0.15, 0.86)!important;
               }
             }
-            
           }
 
           &.videos-menu-active {
-            
             span.menu-item-title {
               &[data-url="videos"] {
                 font-weight: bold!important; 
@@ -475,13 +525,12 @@ header {
                 filter: blur(12px)!important;
                 transform: translateY(80%)!important;
                 opacity: .02!important;
+                transition: opacity .4s cubic-bezier(0.785, 0.135, 0.15, 0.86)!important;
               }
             }
-
           }
 
           &.tour-menu-active {
-
             span.menu-item-title {
               &[data-url="tour"] {
                 font-weight: bold!important; 
@@ -497,21 +546,34 @@ header {
                 filter: blur(12px)!important;
                 transform: translateY(80%)!important;
                 opacity: .02!important;
+                transition: opacity .4s cubic-bezier(0.785, 0.135, 0.15, 0.86)!important;
               }
             }
 
             .menu-item-title-wrap-tour {
               // border: 1px solid blue;
             }
-
           }
 
           &.merch-menu-active {
-            
-            .menu-item-title-wrap-merch {
-              border: 1px solid green;
+            span.menu-item-title {
+              &[data-url="merch"] {
+                font-weight: bold!important; 
+
+                &:after {
+                  width: 70%!important;
+                }
+              }
             }
 
+            .menu-item-title-wrap:not(.menu-item-title-wrap-merch) {
+              .menu-item-title {
+                filter: blur(12px)!important;
+                transform: translateY(80%)!important;
+                opacity: .02!important;
+                transition: opacity .4s cubic-bezier(0.785, 0.135, 0.15, 0.86)!important;
+              }
+            }
           }
         }
         
@@ -574,8 +636,14 @@ header {
           &.merch-menu-active {
 
             .menu-item-merch {
-              border: 1px solid green;
+              // border: 1px solid green;
               width: 100% !important;
+
+              .menu-item-hover-container {
+                transform: translateX(0)!important;
+                opacity: 1!important;
+                width: 75%;
+              }
             }
 
             .menu-item-hover-bg {

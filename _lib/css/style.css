@@ -1580,16 +1580,16 @@ header {
   transition: all 2s ease-in-out;
 }
 
-.stop-hover {
+.block-hover {
   top: 0;
   left: 0;
   position: fixed;
   width: 100vw;
   height: 100vh;
-  transform: translate(-1000%);
+  display: block;
+  z-index: -1;
 }
-.stop-hover.active {
-  transform: translate(0);
+.block-hover.active {
   z-index: 9999999;
 }
 
@@ -1823,23 +1823,16 @@ header {
   letter-spacing: 0.03em;
   text-transform: uppercase;
 }
-.main-menu ul div.absolute-container li.menu-item-tour .menu-item-hover-container .tour-dates .tour-date .info .tickets {
-  display: flex;
-  align-items: center;
+.main-menu ul div.absolute-container li.menu-item-tour .menu-item-hover-container .tour-dates .tour-date .info .time {
   margin-top: 14px;
-}
-.main-menu ul div.absolute-container li.menu-item-tour .menu-item-hover-container .tour-dates .tour-date .info .tickets a {
   background: transparent;
   border: 3px solid #fff;
   padding: 5px 35px;
   color: #fff;
   text-transform: uppercase;
-  display: block;
+  display: table;
   font-size: 16px;
   font-weight: 500;
-}
-.main-menu ul div.absolute-container li.menu-item-tour .menu-item-hover-container .tour-dates .tour-date .info .tickets a:not(:last-of-type) {
-  margin-right: 10px;
 }
 .main-menu ul div.absolute-container li.menu-item-tour .menu-item-hover-container .tour-dates .tour-date:after {
   content: "";
@@ -1856,6 +1849,64 @@ header {
 }
 .main-menu ul div.absolute-container li.menu-item-merch {
   z-index: 200;
+}
+.main-menu ul div.absolute-container li.menu-item-merch .menu-item-hover-container {
+  width: 75%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  transform: translateX(-40px);
+  transition: opacity 0.4s 0.7s ease-in, transform 0.4s 0.9s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+.main-menu ul div.absolute-container li.menu-item-merch .menu-item-hover-container .featured-products {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  width: 100vw;
+  height: auto;
+}
+.main-menu ul div.absolute-container li.menu-item-merch .menu-item-hover-container .featured-products .product {
+  display: flex;
+  align-items: center;
+  width: auto;
+  height: 100%;
+  top: 0;
+  left: 50%;
+  position: absolute;
+  transform: translateX(1000%);
+  max-width: 600px;
+}
+.main-menu ul div.absolute-container li.menu-item-merch .menu-item-hover-container .featured-products .product .product-image {
+  display: inline-block;
+  margin-right: 30px;
+  width: 60%;
+}
+.main-menu ul div.absolute-container li.menu-item-merch .menu-item-hover-container .featured-products .product .product-image img {
+  width: 100%;
+}
+.main-menu ul div.absolute-container li.menu-item-merch .menu-item-hover-container .featured-products .product .product-info {
+  width: 40%;
+}
+.main-menu ul div.absolute-container li.menu-item-merch .menu-item-hover-container .featured-products .product .product-info .product-name {
+  font-size: 18px;
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: bold;
+  letter-spacing: 0.24em;
+  display: block;
+  opacity: 0;
+}
+.main-menu ul div.absolute-container li.menu-item-merch .menu-item-hover-container .featured-products .product .product-info .product-price {
+  font-size: 16px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 300;
+  letter-spacing: 0.24em;
+  display: block;
+  opacity: 0;
 }
 .main-menu ul div.absolute-container li.menu-item:last-of-type {
   border: none;
@@ -1911,7 +1962,7 @@ header {
   top: 0;
   left: 0;
   position: fixed;
-  opacity: 0.75;
+  opacity: 0.5;
   z-index: 0;
   transition: width 0.6s cubic-bezier(0.47, 0, 0.745, 0.715);
 }
@@ -1970,7 +2021,6 @@ header {
   transform: translateY(0);
   opacity: 1;
   cursor: pointer;
-  transition: opacity 0.4s cubic-bezier(0.785, 0.135, 0.15, 0.86) !important;
 }
 .main-menu ul.show-menu-items .absolute-container.menu-item-title-container .menu-item-title-wrap span.menu-item-title:after {
   content: "";
@@ -1979,7 +2029,7 @@ header {
   height: 2px;
   background: #fff;
   margin-top: 10px;
-  transition: width 0.3s 0.4s ease-in-out;
+  transition: width 0.6s 1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
 }
 .main-menu ul.show-menu-items .absolute-container.menu-item-title-container .menu-item-title-wrap span.menu-item-title.current-menu-item {
   opacity: 1 !important;
@@ -1996,6 +2046,7 @@ header {
   filter: blur(12px) !important;
   transform: translateY(80%) !important;
   opacity: 0.02 !important;
+  transition: opacity 0.4s cubic-bezier(0.785, 0.135, 0.15, 0.86) !important;
 }
 .main-menu ul.show-menu-items .absolute-container.menu-item-title-container.videos-menu-active span.menu-item-title[data-url=videos] {
   font-weight: bold !important;
@@ -2007,6 +2058,7 @@ header {
   filter: blur(12px) !important;
   transform: translateY(80%) !important;
   opacity: 0.02 !important;
+  transition: opacity 0.4s cubic-bezier(0.785, 0.135, 0.15, 0.86) !important;
 }
 .main-menu ul.show-menu-items .absolute-container.menu-item-title-container.tour-menu-active span.menu-item-title[data-url=tour] {
   font-weight: bold !important;
@@ -2018,9 +2070,19 @@ header {
   filter: blur(12px) !important;
   transform: translateY(80%) !important;
   opacity: 0.02 !important;
+  transition: opacity 0.4s cubic-bezier(0.785, 0.135, 0.15, 0.86) !important;
 }
-.main-menu ul.show-menu-items .absolute-container.menu-item-title-container.merch-menu-active .menu-item-title-wrap-merch {
-  border: 1px solid green;
+.main-menu ul.show-menu-items .absolute-container.menu-item-title-container.merch-menu-active span.menu-item-title[data-url=merch] {
+  font-weight: bold !important;
+}
+.main-menu ul.show-menu-items .absolute-container.menu-item-title-container.merch-menu-active span.menu-item-title[data-url=merch]:after {
+  width: 70% !important;
+}
+.main-menu ul.show-menu-items .absolute-container.menu-item-title-container.merch-menu-active .menu-item-title-wrap:not(.menu-item-title-wrap-merch) .menu-item-title {
+  filter: blur(12px) !important;
+  transform: translateY(80%) !important;
+  opacity: 0.02 !important;
+  transition: opacity 0.4s cubic-bezier(0.785, 0.135, 0.15, 0.86) !important;
 }
 .main-menu ul.show-menu-items .absolute-container.menu-item-container.music-menu-active .menu-item-music {
   width: 100% !important;
@@ -2054,8 +2116,12 @@ header {
   width: 0 !important;
 }
 .main-menu ul.show-menu-items .absolute-container.menu-item-container.merch-menu-active .menu-item-merch {
-  border: 1px solid green;
   width: 100% !important;
+}
+.main-menu ul.show-menu-items .absolute-container.menu-item-container.merch-menu-active .menu-item-merch .menu-item-hover-container {
+  transform: translateX(0) !important;
+  opacity: 1 !important;
+  width: 75%;
 }
 .main-menu ul.show-menu-items .absolute-container.menu-item-container.merch-menu-active .menu-item-hover-bg {
   width: 100% !important;
