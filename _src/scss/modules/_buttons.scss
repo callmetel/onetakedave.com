@@ -320,24 +320,40 @@
   }
 }
 
+
 .volume {
   align-self: center;
   cursor: pointer;
-  top: 8px;
-  left: 11px;
-  position: absolute;
+  @include absolute(top 20px left 20px);
   z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
 
   svg {
-    @include size(16px, 16px);
+    @include size(35px, 35px);
+    fill: $red;
   }
 
   path {
     transition: $trans-slow;
+  }
+
+  .sound-text {
+    font-family: $gotham;
+    font-size: 9px;
+    font-weight: bold;
+    letter-spacing: 0.2em;
+    color: $red;
+    text-transform: uppercase;
+    display: block;
+    width: max-content;
+    @include absolute(top 10px left 45px);
+    transition: color .4s ease-in-out;
   }
 
   .sound-on {
@@ -348,7 +364,24 @@
     opacity: 0;
   }
 
+  &:not(&--muted) {
+    @for $i from 1 through 9 {
+      #Line_#{$i} {
+        animation: pulse 1s infinite;
+        animation-delay: $i * .15s;
+      }
+    }
+  }
+
   &--muted {
+    svg {
+      fill: $black;
+    }
+
+    .sound-text {
+      color: $black;
+    }
+
     .sound-on {
       opacity: 0;
     }
@@ -356,5 +389,22 @@
     .sound-off {
       opacity: 1;
     }
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scaleY(1);
+    transform-origin: 50% 50%;
+  }
+  
+  50% {
+    transform: scaleY(.7);
+    transform-origin: 50% 50%;
+  }
+  
+  100% {
+    transform: scaleY(1);
+    transform-origin: 50% 50%;
   }
 }
