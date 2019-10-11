@@ -139,7 +139,7 @@ function setVideoSrc(section) {
  * Update URL and Document Title
  */
 function updatePageTitle(section) {
-  document.title = sections[section].title + ' | AetnaCare' + '\u2120';
+  document.title = sections[section].title + ' | OTD' + '\u2120';
 }
 
 
@@ -365,7 +365,7 @@ function nextVideo() {
   let $nextSection = $currPlaying.parent().next('section'),
       sectionClass = $nextSection[0].classList[1],
       pageData     = sectionClass,
-      pageTitle    = sectionClass + ' | AetnaCare' + '\u2120',
+      pageTitle    = sectionClass + ' | OTD' + '\u2120',
       pageUrl      = sectionClass;
 
   playVideo(sectionClass);
@@ -425,9 +425,9 @@ let videoProgress = setInterval(function() {
 
 
 /**
- * Initialize AetnaCare application
+ * Initialize OTD application
  */
-let AetnaCare = {
+let OTD = {
   init: function() {
     let pageTitle = document.title,
         pageUrl   = '/',
@@ -653,7 +653,7 @@ let AetnaCare = {
     // Restart the Journey
     $restartBtn.on('click', function() {
       let pageData  = 'journey',
-          pageTitle = 'Journey | AetnaCare' + '\u2120',
+          pageTitle = 'Journey | OTD' + '\u2120',
           pageUrl   = pageData,
           $firstNav = $footer.find('.section-nav li:first-of-type');
 
@@ -739,7 +739,7 @@ let AetnaCare = {
  * On Document Ready
  */
 $(function() {
-  AetnaCare.init();
+  OTD.init();
 });
 
 

@@ -248,7 +248,7 @@ function learnMore(state) {
             TweenMax.staggerTo('#quote > .block-revealer', .01, {
                 className: '+=reveal'
             }, 0.3);
-        }
+        };
     }
 }
 
@@ -286,6 +286,7 @@ $('.discover.btn').on('click', function() {
     setTimeout(function() {
         $back.addClass('back--active');
     }, 1750);
+    $body.addClass('section-is-open');
     $back.on('click', function() {
         $(this).parent('.discover-content').addClass('close-discover-content').removeClass('discover-content--active');
         $back.removeClass('back--active');
@@ -299,6 +300,7 @@ $('.discover.btn').on('click', function() {
             $learn.removeClass('learn-more--fs');
             $menuBtn.removeClass('btn--light');
         }, 350);
+        $body.removeClass('section-is-open');
     });
 });
 
