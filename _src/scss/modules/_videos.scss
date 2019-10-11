@@ -1,8 +1,7 @@
 // #Video-Styles
 
 .video {
-  @include min(100%, 100%);
-  @include min(100%, 100%);
+  @include min(102%, 102%);
   @include absolute(top 50% left 50%);
   transform: translate(-50%, -50%);
   z-index: -20;
