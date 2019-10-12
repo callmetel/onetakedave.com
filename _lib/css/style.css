@@ -3703,6 +3703,7 @@ video::-webkit-media-controls-start-playback-button {
   background-image: url(../img/otdsw-video-bg.jpg);
 }
 .how .discover-title-banner {
+  background-position: top center;
   background-image: url(../img/discover-how-bg.jpg);
 }
 
