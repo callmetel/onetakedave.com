@@ -744,7 +744,7 @@ $(function() {
 });
 
 $body.removeClass('mobile-active');
-$desktop.fadeIn(1000);
+// $desktop.fadeIn(1000);
 
 window.addEventListener('load', function() {
     if (isMobile.detectMobile()) {
