@@ -33,7 +33,6 @@ let $currPlaying   = $('.video--playing'),
     $navActive     = $navItem.find('.nav-active'),
     $progBar 	   = $('.progress:not(.progress--empty)'),
     $progActive    = $navActive.find($progBar),
-    $closeDur,
     progressTL     = new TimelineMax({
         paused: true
     }),
@@ -167,10 +166,7 @@ function progressBar(state) {
     }
 }
 
-var learnMore = function(state) {
-
-    var l = $.Deferred();
-
+function learnMore(state) {
     let $learn = $('.section--active').find('.learn-more'),
         $learnWrap = $learn.find('.learn-more__wrapper'),
         $story = $('.section--active').find('.story'),
@@ -179,13 +175,10 @@ var learnMore = function(state) {
         $video = $('.video'),
         $videoWrap = $('.video-wrapper'),
         $learnP = $('.section--active .learn-more__wrapper .content > p'),
-        $reveal = $('.section--active .reveal'),
         $visual = $learn.find('.visual-content'),
         $next = $learn.find('.next'),
         $iframe = $visual.find('iframe'),
-        $menu = $('.btn--menu'),
-        $Button = $('.section--active .btn:not(.discover)');
-
+        $menu = $('.btn--menu');
     if (state === 'open') {
         $story.fadeOut('fast');
         $learn.delay(500).fadeIn('fast');
@@ -228,68 +221,36 @@ var learnMore = function(state) {
         $video.addClass('video--not-fs');
         $videoWrap.addClass('video-wrapper--not-fs');
         $question.removeClass('reveal');
-    } 
-    else if (state === 'close') {
-
-        console.log('learn more');
-        
-        let learnCloseTL = new TimelineMax({paused:true});
-
-        learnCloseTL.staggerFromTo($reveal, .4, {
-            x: '0%',
-            ease: SlowMo.ease.config(0.5, 0.4, false)
-        },
-        {
-            x: '-30%',
-            ease: SlowMo.ease.config(0.5, 0.4, false)
-        }, 0.2);
-        learnCloseTL.staggerFromTo($reveal, .25, {
+    } else if (state === 'close') {
+        $learn.fadeOut('fast');
+        $video.removeClass('video--not-fs');
+        $videoWrap.removeClass('video-wrapper--not-fs');
+        $learnP.removeClass('reveal');
+        learnTL.to($footer, .25, {
             alpha: 1,
-            ease: SlowMo.ease.config(0.5, 0.4, false)
-        },
-        {
-            alpha: 0,
-            ease: SlowMo.ease.config(0.5, 0.4, false)
-        }, 0.2,'-=.8');
-        learnCloseTL.fromTo($Button, .4, {
-            alpha:1,
-            ease: SlowMo.ease.config(0.5, 0.4, false)
-        },
-        {
-            alpha: 0,
-            ease: SlowMo.ease.config(0.5, 0.4, false)
-        }, 0.2);
-        learnCloseTL.set($reveal, {className:'-=reveal-hide'},"+=1");
-        learnCloseTL.duration(3).play();
-        console.log(learnCloseTL.duration());
-        $closeDur = Math.round(learnCloseTL.duration())+'000';
-        // $learn.fadeOut('fast');
-        // $video.removeClass('video--not-fs');
-        // $videoWrap.removeClass('video-wrapper--not-fs');
-        // learnTL.to($footer, .25, {
-        //     alpha: 1,
-        //     visibility: 'visible'
-        // });
-        // $skipBtn.css({
-        //     'opacity': 1,
-        //     'visibility': 'visible'
-        // });
-        // if ($('.discover-content').hasClass('discover-content--active')) {
-        //     $('.discover-content--active').find('.back').trigger('click');
-        // }
-        // $('.discover-content').removeClass('discover-content--active');
-        // $learn.removeClass('learn-more--fs');
-        // if (!$('.home').hasClass('section--active')) {
-        //     $menuBtn.addClass('btn--light');
-        // } else {
-        //     $('#quote > .block-revealer').removeClass('reveal');
-        //     TweenMax.staggerTo('#quote > .block-revealer', .01, {
-        //         className: '+=reveal'
-        //     }, 0.3);
-        // };
+            visibility: 'visible'
+        }).to($overlay, 1, {
+            backgroundColor: 'rgba(18, 18, 18, 0)'
+        });
+        $skipBtn.css({
+            'opacity': 1,
+            'visibility': 'visible'
+        });
+        if ($('.discover-content').hasClass('discover-content--active')) {
+            $('.discover-content--active').find('.back').trigger('click');
+        }
+        $('.discover-content').removeClass('discover-content--active');
+        $learn.removeClass('learn-more--fs');
+        if (!$('.home').hasClass('section--active')) {
+            $menuBtn.addClass('btn--light');
+        } else {
+            $('#quote > .block-revealer').removeClass('reveal');
+            TweenMax.staggerTo('#quote > .block-revealer', .01, {
+                className: '+=reveal'
+            }, 0.3);
+        };
     }
-   return l;
-};
+}
 
 function defineLearnWidth() {
     let $videoWidth = $('.section--active').find('.video-wrapper').width(),
@@ -359,98 +320,59 @@ function storyText(state) {
 }
 
 function playVideo(section) {
-
-    var disableCurrVideo = function() {
-
-        var d = $.Deferred();
-        console.log(parseInt($closeDur));
-        setTimeout(function(){
-            // Do your whiz bang jQuery stuff here
-            console.log('disableCurrVideo');
-            let $selector = sections[section].selector,
-                $video = $selector.find('.video--scene'),
-                $loop = $selector.find('.video--loop'),
-                $vidSection = $currPlaying.parents('section');
-
-            updatePageTitle(section);
-            $currPlaying[0].pause();
-            $currPlaying.removeClass('video--playing');
-            $vidSection.removeClass('section--active');
-            $currPlaying.parents('section').find('iframe').removeAttr('src');
-        }, parseInt($closeDur));
-
-        return d;
-    };
-
-    var enableNextVideo = function() {
-
-        var e = $.Deferred();
-
-        // Do your whiz bang jQuery stuff here
-        console.log('enableNextVideo');
-
-        let $selector = sections[section].selector,
-            $video = $selector.find('.video--scene'),
-            $loop = $selector.find('.video--loop'),
-            $vidSection = $currPlaying.parents('section');
-
-        if (section === 'home') {
-            $loop.addClass('video--playing');
-            $('.home > .video-wrapper').removeClass('fs');
-            $menuBtn.removeClass('btn--light');
-        } else {
-            $video.addClass('video--playing');
-            $video.parents('.video-wrapper').addClass('video-wrapper--playing');
-        }
-        setVideoSrc(section);
-
-        return e;
-    };
-
-    var enablePlayVideo = function() {
-
-        console.log('enablePlayVideo');
-
-        $currPlaying = $('.video--playing');
+    let $selector = sections[section].selector,
+        $video = $selector.find('.video--scene'),
+        $loop = $selector.find('.video--loop'),
         $vidSection = $currPlaying.parents('section');
-        $vidSection.addClass('section--active');
-        setTimeout(function(){
-            let lastPlayPos = 0,
-                currPlayPos = 0,
-                buffering = false;
-            var checkBuffering = setInterval(function() {
-                currPlayPos = $currPlaying[0].currentTime;
-                let offset = 1 / 50;
-                if (!buffering && currPlayPos < (lastPlayPos + offset) && !$currPlaying[0].paused && $currPlaying.hasClass('video--scene')) {
-                    buffering = true;
-                    progressBar('pause');
-                    $loader.fadeIn();
-                }
-                if (buffering && currPlayPos > (lastPlayPos + offset) && !$currPlaying[0].paused && $currPlaying.hasClass('video--scene')) {
-                    buffering = false;
-                    progressBar('resume');
-                    $loader.fadeOut();
-                }
-                if ($currPlaying.hasClass('video--loop')) {
-                    $loader.hide();
-                }
-                lastPlayPos = currPlayPos;
-            }, 200);
-            setTimeout(function() {
-                if ($currPlaying[0].paused) {
-                    $currPlaying[0].pause();
-                    $currPlaying[0].play();
-                }
-                else {
-                    $currPlaying[0].play();
-                };
-                progressBar('play');
-            }, 200);
-        },1000);
+    setVideoSrc(section);
+    updatePageTitle(section);
+    $currPlaying[0].pause();
+    $currPlaying.removeClass('video--playing');
+    $vidSection.removeClass('section--active');
+    learnMore('close');
+    $currPlaying.parents('section').find('iframe').removeAttr('src');
+    if (section === 'home') {
+        $loop.addClass('video--playing');
+        $('.home > .video-wrapper').removeClass('fs');
+        $menuBtn.removeClass('btn--light');
+    } else {
+        $video.addClass('video--playing');
+        $video.parents('.video-wrapper').addClass('video-wrapper--playing');
     }
-
-    // Now call the functions one after the other using the done method
-    learnMore('close').done( disableCurrVideo() )/*.done( enableNextVideo() ).done( enablePlayVideo() )*/;
+    $currPlaying = $('.video--playing');
+    $vidSection = $currPlaying.parents('section');
+    $vidSection.addClass('section--active');
+    let lastPlayPos = 0,
+        currPlayPos = 0,
+        buffering = false;
+    var checkBuffering = setInterval(function() {
+        currPlayPos = $currPlaying[0].currentTime;
+        let offset = 1 / 50;
+        if (!buffering && currPlayPos < (lastPlayPos + offset) && !$currPlaying[0].paused && $currPlaying.hasClass('video--scene')) {
+            buffering = true;
+            progressBar('pause');
+            $loader.fadeIn();
+        }
+        if (buffering && currPlayPos > (lastPlayPos + offset) && !$currPlaying[0].paused && $currPlaying.hasClass('video--scene')) {
+            buffering = false;
+            progressBar('resume');
+            $loader.fadeOut();
+        }
+        if ($currPlaying.hasClass('video--loop')) {
+            $loader.hide();
+        }
+        lastPlayPos = currPlayPos;
+    }, 200);
+    setTimeout(function() {
+        if ($currPlaying[0].paused) {
+            $currPlaying[0].pause();
+            $currPlaying[0].play();
+        }
+        else {
+            $currPlaying[0].play();
+        };
+        progressBar('play');
+    }, 200);
 }
 
 function skipVideo() {
@@ -561,7 +483,7 @@ let OneTakeDave = {
                 pageTitle = sections[pageUrl].title;
             if (pageUrl !== $currPlaying.data('video')) {
                 playVideo(pageData);
-                // learnMore('close');
+                learnMore('close');
                 if (pageUrl === 'home') {
                     $footer.add($skipBtn).css({
                         'opacity': 0,
@@ -783,7 +705,7 @@ let OneTakeDave = {
         });
         $nextBtn.on('click', function() {
             nextVideo();
-            // learnMore('close');
+            learnMore('close');
             $navActive.removeClass('nav-active');
             $progActive.removeClass('progress--active');
             $navActive.next().addClass('nav-active');
@@ -942,7 +864,7 @@ window.addEventListener('load', function() {
 
 window.addEventListener('popstate', function(e) {
     playVideo(e.state);
-    // learnMore('close');
+    learnMore('close');
     if (window.location.pathname === '/home' || window.location.pathname === '/') {
         $footer.add($skipBtn).css({
             'opacity': 0,
