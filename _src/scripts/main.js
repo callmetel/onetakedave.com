@@ -77,46 +77,46 @@ const sections = {
     selector: $('section.home'),
     duration: 31
   },
-  journey: {
-    title: 'Journey',
+  who: {
+    title: 'Who',
     video: videoUrl + 1 + '.mp4',
     loop: loopUrl + 1 + '.mp4',
-    selector: $('section.journey'),
+    selector: $('section.who'),
     duration: 22
   },
-  identify: {
-    title: 'Identify',
+  what: {
+    title: 'What',
     video: videoUrl + 2 + '.mp4',
     loop: loopUrl + 2 + '.mp4',
-    selector: $('section.identify'),
+    selector: $('section.what'),
     duration: 31
   },
-  connect: {
-    title: 'Connect',
+  where: {
+    title: 'Where',
     video: videoUrl + 3 + '.mp4',
     loop: loopUrl + 3 + '.mp4',
-    selector: $('section.connect'),
+    selector: $('section.where'),
     duration: 26
   },
-  guide: {
-    title: 'Guide',
+  when: {
+    title: 'When',
     video: videoUrl + 4 + '.mp4',
     loop: loopUrl + 4 + '.mp4',
-    selector: $('section.guide'),
+    selector: $('section.when'),
     duration: 21
   },
-  support: {
-    title: 'Support',
+  why: {
+    title: 'Why',
     video: videoUrl + 5 + '.mp4',
     loop: loopUrl + 5 + '.mp4',
-    selector: $('section.support'),
+    selector: $('section.why'),
     duration: 31
   },
-  sustain: {
-    title: 'Sustain',
+  how: {
+    title: 'How',
     video: videoUrl + 6 + '.mp4',
     loop: loopUrl + 6 + '.mp4',
-    selector: $('section.sustain'),
+    selector: $('section.how'),
     duration: 35
   }
 };
@@ -391,20 +391,20 @@ let videoProgress = setInterval(function() {
 
       // Load Next Video
       switch(currTitle) {
-        case 'journey':
-          setVideoSrc('identify');
+        case 'who':
+          setVideoSrc('what');
           break;
-        case 'identify':
-          setVideoSrc('connect');
+        case 'what':
+          setVideoSrc('where');
           break;
-        case 'connect':
-          setVideoSrc('guide');
+        case 'where':
+          setVideoSrc('when');
           break;
-        case 'guide':
-          setVideoSrc('support');
+        case 'when':
+          setVideoSrc('why');
           break;
-        case 'Support':
-          setVideoSrc('sustain');
+        case 'how':
+          setVideoSrc('how');
           break;
       }
     }
@@ -652,8 +652,8 @@ let OTD = {
 
     // Restart the Journey
     $restartBtn.on('click', function() {
-      let pageData  = 'journey',
-          pageTitle = 'Journey | OTD' + '\u2120',
+      let pageData  = 'who',
+          pageTitle = 'Who | OTD' + '\u2120',
           pageUrl   = pageData,
           $firstNav = $footer.find('.section-nav li:first-of-type');
 

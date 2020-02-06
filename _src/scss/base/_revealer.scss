@@ -496,11 +496,6 @@
 	transform: translate3d(0,0,0);
 }
 
-
-
-
-
-
 .block-revealer {
 	transform: translateX(-100%);
 	transition: transform 250ms ease-out;
@@ -532,7 +527,11 @@ h2.block-text.hide-text > .block-revealer__element {
 }
 
 .reveal {
-	transform: translateX(0)!important;
+	transform: translateX(0);
+	opacity: 1;
+}
+.reveal-hide {
+	transition: opacity 170ms 400ms ease-out, transform 500ms ease-in-out!important;
 }
 
 .reveal > .block-revealer__content {

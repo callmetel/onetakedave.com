@@ -20,15 +20,15 @@ $(document).ready(function() {
         }, '+=.5');
     }
 
-    $('.btn--start').on('click', function() {
-        $('#video').parents('.video-wrapper').addClass('fs');
-        $('.--q').addClass('wipeoff');
-        setTimeout(function() {
-            $('.--q').addClass('wipe');
-            $('.btn--start').addClass('hint');
-            $('.bit-button').text('tickets');
-        }, 2000);
-    });
+    // $('.btn--start').on('click', function() {
+    //     $('#video').parents('.video-wrapper').addClass('fs');
+    //     $('.--q').addClass('wipeoff');
+    //     setTimeout(function() {
+    //         $('.--q').addClass('wipe');
+    //         $('.btn--start').addClass('hint');
+    //         $('.bit-button').text('tickets');
+    //     }, 2000);
+    // });
 
     $('.bit-events-container').on('click', function(e) {
         e.preventDefault();
