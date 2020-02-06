@@ -1,0 +1,4 @@
+.DS_Store
+.cache
+_src/node_modules
+_lib/vid
