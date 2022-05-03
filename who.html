@@ -16,8 +16,14 @@
 		<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script>
 			$(function () {
+				$(".preloader-placeholder").load(
+					"https://onetakedave.com/index.html #preloader",
+					function () {
+						$("#preloader").unwrap();
+					}
+				);
 				$(".body-wrapper").load(
-					"https://onetakedave.com/index.html #preloader,https://onetakedave.com/index.html #desktop",
+					"https://onetakedave.com/index.html #desktop",
 					function () {
 						$("#desktop").unwrap();
 						$("#scripts")
@@ -50,6 +56,7 @@
 		</script>
 	</head>
 	<body>
+		<div class="preloader-placeholder"></div>
 		<div class="body-wrapper"></div>
 		<div id="scripts">
 			<!-- <script type="text/javascript" src="/_lib/js/preloader.js"></script> -->
