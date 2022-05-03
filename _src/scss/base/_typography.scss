@@ -11,6 +11,14 @@
 
 @font-face {
 	font-family: "Gotham";
+	src: url("#{$path-font}/hinted-GothamBook.woff2") format("woff2"),
+		url("#{$path-font}/hinted-GothamBook.woff") format("woff");
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Gotham";
 	src: url("#{$path-font}/hinted-GothamMedium.woff2") format("woff2"),
 		url("#{$path-font}/hinted-GothamMedium.woff") format("woff");
 	font-weight: 500;
