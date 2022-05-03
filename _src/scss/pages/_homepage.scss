@@ -788,6 +788,18 @@
 					}
 				}
 			}
+			.main-p {
+				font-size: 22px;
+				font-weight: $font-weight-light;
+				line-height: 1.4;
+				letter-spacing: 0.06em;
+				color: #fff;
+				text-align: left;
+				width: 80%;
+				margin: 0 auto;
+				max-width: 975px;
+				transform: translateX(-5%);
+			}
 		}
 	}
 }
