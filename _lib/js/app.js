@@ -946,7 +946,7 @@ window.addEventListener(
 			console.log("user is using desktop");
 		}
 		if (window.location.pathname == "/who") {
-			$startBtn.trigger("click");
+			$skipBtn.trigger("click");
 		} else if (window.location.pathname == "/what") {
 			$startBtn.trigger("click");
 			setTimeout(function () {
