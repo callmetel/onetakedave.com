@@ -755,12 +755,12 @@
 					transform: rotate(90deg);
 					transform-origin: bottom;
 					letter-spacing: -0.02em;
-					@include media($md-mobile) {
-						font-size: 170px;
-					}
-					@include media($sm-mobile) {
-						font-size: 150px;
-					}
+					// @include media($md-mobile) {
+					// 	font-size: 170px;
+					// }
+					// @include media($sm-mobile) {
+					// 	font-size: 150px;
+					// }
 				}
 
 				img {
