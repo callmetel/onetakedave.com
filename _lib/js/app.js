@@ -864,6 +864,12 @@ $(function () {
 $body.removeClass("mobile-active");
 // $desktop.fadeIn(1000);
 
+function initLoadPage(path) {
+	$(".section:not(." + path + ")").removeClass("section--active");
+	$("." + path).addClass("section--active");
+	learnMore("open");
+}
+
 window.addEventListener(
 	"load",
 	function () {
@@ -948,7 +954,7 @@ window.addEventListener(
 			console.log("user is using desktop");
 		}
 		if (window.location.pathname == "/who") {
-			learnMore("open");
+			initLoadPage("who");
 		} else if (window.location.pathname == "/what") {
 			$startBtn.trigger("click");
 			setTimeout(function () {
