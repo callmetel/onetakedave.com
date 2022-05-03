@@ -742,6 +742,7 @@
 				max-width: 975px;
 				display: block;
 				margin: 0 auto;
+				transform: translateX(10%);
 
 				&:before {
 					content: "Who Is";
@@ -769,11 +770,17 @@
 				}
 			}
 			.intro-h {
-				font-size: 100px;
-				font-weight: 400;
+				font-size: 70px;
+				font-weight: $font-weight-light;
 				line-height: 1.4;
 				letter-spacing: -0.02em;
 				text-transform: uppercase;
+				color: #fff;
+				text-align: left;
+				width: 80%;
+				margin: 0 auto;
+				max-width: 975px;
+				transform: translateX(-10%);
 
 				.desktop-br {
 					@include media($desktop) {
