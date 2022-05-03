@@ -734,13 +734,26 @@
 
 	.discover-content {
 		background-color: #000000 !important;
-		padding: 180px 0 !important;
-
-		.main-img {
-			width: 80%;
-			max-width: 1000px;
-			display: block;
-			margin: 0 auto;
+		.who-is {
+			padding: 180px 0;
+			.main-img {
+				position: relative;
+				&:before {
+					content: "Who Is";
+					text-transform: uppercase;
+					color: #ffffff;
+					font-weight: $font-weight-bold;
+					font-size: 230px;
+					position: absolute;
+					top: -10px;
+					right: -50px;
+					transform: rotate(90deg);
+				}
+				width: 80%;
+				max-width: 1000px;
+				display: block;
+				margin: 0 auto;
+			}
 		}
 	}
 }
