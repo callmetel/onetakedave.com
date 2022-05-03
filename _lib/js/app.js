@@ -325,7 +325,7 @@ $(".discover.btn").on("click", function () {
 	$body.addClass("section-is-open");
 	$back.on("click", function () {
 		$(this)
-			.parent(".discover-content")
+			.closest(".discover-content")
 			.addClass("close-discover-content")
 			.removeClass("discover-content--active");
 		$back.removeClass("back--active");
