@@ -977,6 +977,10 @@ window.addEventListener(
 	false
 );
 
+window.addEventListener("load", function (e) {
+	console.log(window.location.pathname + " loaded");
+});
+
 window.addEventListener("popstate", function (e) {
 	playVideo(e.state);
 	learnMore("close");
