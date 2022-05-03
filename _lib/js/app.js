@@ -867,6 +867,7 @@ $body.removeClass("mobile-active");
 function initLoadPage(path) {
 	$(".section:not(." + path + ")").removeClass("section--active");
 	$("." + path).addClass("section--active");
+	$(".section-nav li[data-url='" + path + "']").addClass("nav-active");
 	learnMore("open");
 }
 
