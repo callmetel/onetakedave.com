@@ -864,6 +864,11 @@ $(function () {
 $body.removeClass("mobile-active");
 // $desktop.fadeIn(1000);
 
+$(".close-back").click(function (e) {
+	e.preventDefault();
+	$(this).closest(".discover-content").find(".back").trigger("click");
+});
+
 function initLoadPage(path) {
 	$(".section:not(." + path + ")").removeClass("section--active");
 	$("." + path).addClass("section--active");
