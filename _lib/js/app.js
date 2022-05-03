@@ -985,11 +985,7 @@ window.addEventListener(
 	false
 );
 
-window.addEventListener("load", function (e) {
-	console.log(window.location.pathname + " loaded");
-});
-
-History.Adapter.bind(window, "statechange", function (e) {
+window.addEventListener("popstate", function (e) {
 	playVideo(e.state);
 	learnMore("close");
 	if (
