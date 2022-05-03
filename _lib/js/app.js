@@ -981,56 +981,54 @@ window.addEventListener("load", function (e) {
 	console.log(window.location.pathname + " loaded");
 });
 
-window.addEventListener("popstate", function (e) {
-	if (e.state) {
-		playVideo(e.state);
-		learnMore("close");
-		if (
-			window.location.pathname === "/home" ||
-			window.location.pathname === "/"
-		) {
-			$footer.add($skipBtn).css({
-				opacity: 0,
-				visibility: "hidden",
-			});
-			$logo.first().css({
-				opacity: 1,
-				visibility: "visible",
-			});
-			$logo.last().css({
-				opacity: 0,
-				visibility: "hidden",
-			});
-		} else {
-			let prevUrl = $navActive[0].baseURI.split("/")[3],
-				$prevActive = $navActive.parent().find('[data-url="' + prevUrl + '"]');
-			$navActive.removeClass("nav-active");
-			$progActive.removeClass("progress--active");
-			$prevActive.addClass("nav-active");
-			$navActive = $navItem.find(".nav-active");
-			$progActive = $navActive.find(".progress:not(.progress--empty)");
-			$progActive.addClass("progress--active");
-			setTimeout(function () {
-				progressBar("play");
-			}, 200);
-			$footer.add($skipBtn).css({
-				opacity: 1,
-				visibility: "visible",
-			});
-			$logo.first().css({
-				opacity: 0,
-				visibility: "hidden",
-			});
-			$logo.last().css({
-				opacity: 1,
-				visibility: "visible",
-			});
-		}
-		progressTL.progress(0).clear();
-		progressTL = new TimelineMax({
-			paused: true,
+history.Adapter.bind(window, "statechange", function (e) {
+	playVideo(e.state);
+	learnMore("close");
+	if (
+		window.location.pathname === "/home" ||
+		window.location.pathname === "/"
+	) {
+		$footer.add($skipBtn).css({
+			opacity: 0,
+			visibility: "hidden",
+		});
+		$logo.first().css({
+			opacity: 1,
+			visibility: "visible",
+		});
+		$logo.last().css({
+			opacity: 0,
+			visibility: "hidden",
+		});
+	} else {
+		let prevUrl = $navActive[0].baseURI.split("/")[3],
+			$prevActive = $navActive.parent().find('[data-url="' + prevUrl + '"]');
+		$navActive.removeClass("nav-active");
+		$progActive.removeClass("progress--active");
+		$prevActive.addClass("nav-active");
+		$navActive = $navItem.find(".nav-active");
+		$progActive = $navActive.find(".progress:not(.progress--empty)");
+		$progActive.addClass("progress--active");
+		setTimeout(function () {
+			progressBar("play");
+		}, 200);
+		$footer.add($skipBtn).css({
+			opacity: 1,
+			visibility: "visible",
+		});
+		$logo.first().css({
+			opacity: 0,
+			visibility: "hidden",
+		});
+		$logo.last().css({
+			opacity: 1,
+			visibility: "visible",
 		});
 	}
+	progressTL.progress(0).clear();
+	progressTL = new TimelineMax({
+		paused: true,
+	});
 });
 
 $(".video-blurb").on("click", function (e) {
