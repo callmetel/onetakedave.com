@@ -790,9 +790,11 @@
 			}
 			.main-p {
 				width: 80%;
-				margin: 0 auto;
+				margin: 100px auto;
 				max-width: 975px;
 				transform: translateX(-5%);
+				display: flex;
+				align-items: start;
 
 				p {
 					font-size: 22px;
