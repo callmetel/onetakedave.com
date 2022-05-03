@@ -865,7 +865,6 @@ $body.removeClass("mobile-active");
 // $desktop.fadeIn(1000);
 
 function initLoadPage(path) {
-	$("body").css("transform", "translateY(100vh)");
 	$(".section:not(." + path + ")").removeClass("section--active");
 	$("." + path).addClass("section--active");
 	learnMore("open");
