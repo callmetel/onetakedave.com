@@ -812,7 +812,7 @@
 			}
 
 			.performing-img {
-				margin: -100px auto 0;
+				margin: -150px auto 0;
 				width: 80%;
 				img {
 					display: block;
@@ -821,6 +821,19 @@
 					@include media($desktop) {
 						width: 60%;
 					}
+				}
+			}
+
+			.close-back {
+				display: inline-block;
+				margin: 180px auto 0;
+				text-transform: uppercase;
+				font-size: 12px;
+				font-weight: 300;
+				letter-spacing: 0.06em;
+
+				span {
+					padding-top: 8px;
 				}
 			}
 		}
