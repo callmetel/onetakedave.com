@@ -430,7 +430,9 @@ function skipVideo() {
 	$currPlaying[0].pause();
 	$currPlaying.removeClass("video--playing");
 	progressBar("stop");
-	$loop[0].play();
+	if (typeof $loop[0] !== "undefined") {
+		$loop[0].play();
+	}
 	$loop.addClass("video--playing");
 	$currPlaying = $loop;
 	$pauseBtn.removeClass("play-pause--paused").addClass("play-pause--playing");
